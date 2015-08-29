@@ -1,0 +1,29 @@
+<ion-view view-title="Friends">
+<div class="bar bar-subheader item-input-inset bar-light">
+    <label class="item-input-wrapper">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" ng-model="queryInput" placeholder="Search">
+    </label>
+</div>
+    <ion-content class="has-subheader">
+    <ion-refresher on-refresh="refresh()"></ion-refresher><!--Refreshing function here!!-->
+    <div class="text-center top-distance" ng-if="show"><ion-spinner icon="ios" ></ion-spinner></div>
+    <ion-list  ng-if="searchList.length>0">
+    <label class="item">Search Results:</label>
+    <ion-item class="item-thumbnail-left item-icon-right" ng-repeat="key in searchList">
+    <img ng-src="{{searchListPic[$index]}}">
+    <h2>{{key.nickName}}</h2>
+    <button class="button button-clear icon ion-person-add button-dark" ng-click="addFriend(key)"></button>
+    </ion-item>
+    </ion-list >
+        <ion-list  ng-if="myFriends">
+        <label class="item">Your Friends:</label>
+            <ion-item class="item-thumbnail-left item-icon-right" ng-repeat="friend in myFriends">
+            <img ng-src="{{myFriendsPic[$index]}}">
+            <h2>{{friend.nickName}}</h2>
+                <ion-option-button class="button-assertive" ng-click="delete(friend)"><i class="icon ion-close"></i>
+                </ion-option-button>
+            </ion-item>
+        </ion-list >
+    </ion-content>
+</ion-view>

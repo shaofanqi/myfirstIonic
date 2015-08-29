@@ -1,0 +1,62 @@
+<ion-modal-view>
+<header class="bar bar-header bar-positive myColorTheme">
+	<button class="button button-small button-clear icon ion-ios-arrow-back" ng-click="modal.hide()"><span class=""></span></button>
+	<h1 class="title">Edit User Info</h1>
+	<button class="button button-small button-clear icon ion-upload" ng-click="setprofilePicAndSave()"></button>
+</header>
+<ion-content class="has-header padding">
+<div class="card">
+	<label class="item item-input">
+		<span class="input-label">First Name</span>
+		<input type="text" placeholder="Your First Name" ng-model="profileUserInfo.userInfo.firstName">
+	</label>
+	<label class="item item-input">
+		<span class="input-label">Last Name</span>
+		<input type="text" placeholder="Your Last Name" ng-model="profileUserInfo.userInfo.lastName">
+	</label>
+	<label class="item item-input">
+		<span class="input-label">Nick Name</span>
+		<input type="text" placeholder="The name will displayed" ng-model="profileUserInfo.userInfo.nickName">
+	</label>
+	<label class="item item-input">
+		<span class="input-label">Email</span>
+		<input type="text" placeholder="Email" ng-model="profileUserInfo.userInfo.email">
+	</label>
+</div>
+<div class="card">
+	<div class="item item-toggle">
+		<span class="input-label">Notification</span>
+		<label class="toggle">
+			<input type="checkbox">
+			<div class="track"><div class="handle"></div></div>
+		</label>
+	</div>
+	<div class="item item-toggle">
+		<span class="input-label">Notification</span>
+		<label class="toggle">
+			<input type="checkbox">
+			<div class="track"><div class="handle"></div></div>
+		</label>
+	</div>
+	<div class="item item-toggle">
+		<span class="input-label">Notification</span>
+		<label class="toggle">
+			<input type="checkbox">
+			<div class="track"><div class="handle"></div></div>
+		</label>
+	</div>
+</div>
+<div class="text-center">
+	<img ng-if="profileUserInfo.userInfo.profilePic&&!showCropPic" class="circle z2" ng-src="{{profileUserInfo.userInfo.profilePic}}">
+	<img ng-if="!profileUserInfo.userInfo.profilePic&&!showCropPic" class="circle z2" ng-src="img/avatar.png">
+	<img ng-if="showCropPic" class="circle z2" ng-src="{{image.croppedImage}}">
+</div>
+<div class="padding text-center">
+	<button class="button button-clear icon ion-aperture" ng-click="openFile()"> Image</button>
+</div>
+<input type="file" id="MyFile"/>
+<div class="cropArea" ng-show="showCropPic">
+	<img-crop image="image.originalImage" result-image="image.croppedImage" result-image-quality= "0.5" result-image-size="100"></img-crop>
+</div>
+</ion-content>
+</ion-modal-view>

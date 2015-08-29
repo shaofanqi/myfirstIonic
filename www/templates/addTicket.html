@@ -1,0 +1,54 @@
+<ion-modal-view>
+<header class="bar bar-header bar-positive myColorTheme">
+	<button class="button button-small button-clear icon ion-ios-arrow-back" ng-click="modal.hide()"><span class=""></span></button>
+	<h1 class="title">Adding New Ticket</h1>
+	<button class="button button-small button-clear icon ion-upload" ng-click="addTicket(ticket)"></button>
+</header>
+	<ion-content class="has-header padding">
+		<div class="card padding">
+			<label class="item item-input" >
+				<span class="input-label">Ticket Name</span>
+				<input type="text" placeholder="Your Ticket Name" ng-model="ticket.name" required>
+			</label>
+		</div>
+		<div class="card padding">
+			<label class="item item-input" ng-if="friends.length !==0">
+				Friends List:
+			</label>
+			<ul class="draggable-objects item item-input text-wrap">
+				<li  ng-repeat="obj in friends" >
+
+					<div ng-drag="true" data-tap-disabled="true"  ng-drag-data="obj" data-allow-transform="true" class="padding" ng-click="add($index)"> <img ng-src="{{pics[$index]}}" class="smcircle"> {{obj.nickName}}
+					</div>
+				</li>
+			</ul>
+			<div ng-drop="true" ng-drop-success="onDropComplete1($data,$event)" class="dropArea">
+				<label class="item item-input">
+				Participants:
+				<button class="button button-clear col text-right" ng-click="showCustomerFriendsInput = true;">Not in List</button>
+			</label>
+			<ul class="item text-wrap">
+				<div class="centerIt" ng-if="ParticipantsList.length === 0&&friends.length !==0">Drop Your Participants Here</div>
+				<li ng-repeat="obj in ParticipantsList" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess1($data,$event)" class="">
+					{{obj.nickName}} <!-- : {{$index}} --><button class="button button-clear icon ion-ios-close-empty" ng-click="Delete($index)"></button>
+				</li>
+			</ul>
+			<div class="item item-input-inset" ng-if="showCustomerFriendsInput">
+				<label class="item-input-wrapper">
+					<span class="input-label">Friends Name</span>
+					<input type="text" placeholder="Name" ng-model="friendName">
+				</label>
+				<button class="button button-clear icon ion-ios-plus" ng-click="addCustom(friendName);friendName='';"></button>
+			</div>
+		</div>
+	</div>
+	<!-- {{ParticipantsList}} -->
+	<div class="card padding">
+		<label class="item item-input" >
+				<span class="input-label">Description</span>
+				<input type="text" placeholder="Ticket Description" ng-model="ticket.description">
+			</label>
+	</div>
+	<!-- {{ticket}} -->
+	</ion-content>
+</ion-modal-view>

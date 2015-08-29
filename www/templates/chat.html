@@ -1,0 +1,19 @@
+<ion-view view-title="Chat & Notice">
+	<ion-nav-buttons side="secondary"><!--navbar button here, sid = primary, secondary-->
+		<button class="button button-icon ion-ios-compose" ng-click='modal.show()'></button>
+	</ion-nav-buttons>
+
+	<ion-content class="">
+	<ion-refresher on-refresh="refresh()"></ion-refresher><!--Refreshing function here!!-->
+		<ion-list>
+		<ion-item class="item-text-wrap" ng-repeat='c in chats track by c.modifiedTime' href="">
+		 <span class="badge badge-assertive">{{chatsNew[$index]}}</span>
+		<h2>{{c.name}}</h2>
+		<span ng-repeat="i in c.chatList">{{i.nickName}} </span>
+			<ion-option-button class="button-assertive" ng-click="delete()"><i class="icon ion-close"></i>
+			</ion-option-button>
+		</ion-item>
+
+	</ion-list>
+	</ion-content>
+</ion-view>

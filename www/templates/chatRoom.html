@@ -1,0 +1,41 @@
+<!-- <ion-header-bar class="bar-dark">
+<h2 class="title">Detail Info</h2> -->
+</ion-header-bar>
+<ion-view view-title="Chat Room">
+<ion-content>
+<div class="card">
+	<ion-item class="item item-text-wrap item-icon-right">
+	<h2>{{ticketInfo.name}}</h2>
+	<div class="text-right">
+	Total Amount: <ion-spinner icon="ios-small" ng-if="!accountInfo.total"></ion-spinner><span class="red">{{accountInfo.total || ''}}</span></div>
+	
+	<div class="text-right">
+	Your Balance: <ion-spinner icon="ios-small" ng-if="!accountInfo.yourTotal"></ion-spinner><span ng-class="whatColor(accountInfo.yourTotal)">{{accountInfo.yourTotal | number:2 || ''}}</span></div>
+
+	<hr/>
+	<p>{{ticketInfo.description}}</p>
+	<!-- {{ticketInfo}} -->
+	<ion-item class="item text-wrap">
+	<h3 ng-click="showPart = !showPart">Participants </h3>
+	<div ng-repeat="one in ticketInfo.participants" ng-if="showPart">
+		<div class="row" ng-if="$index%2 === 0">
+			<div class="col">{{ticketInfo.participants[$index].nickName}} <span class="red">{{showother[$index] || ''}}</span></div>
+			<div class="col">{{ticketInfo.participants[$index+1].nickName}} <span class="red">{{showother[$index+1] || ''}}</span></div>
+		</div>
+	</div>
+	</ion-item>
+</div >
+<div class="card">
+	<ion-item>
+	<h3>Ticket Item</h3>
+	<button class="button button-small button-clear icon ion-plus-round" ng-click="oModal2.show()">Add Item</button>
+	</ion-item >
+	
+	<ion-item ng-repeat="item in ticketInfo.entries" href="#/tab/tickets/{{ticketInfo.$id}}/{{item.time}}">
+	{{item.time |date:'short'}}
+	<span class="icon ion-social-usd"></span>
+	{{item.amount}}
+	</ion-item>
+</div>
+</ion-view>
+</ion-content>

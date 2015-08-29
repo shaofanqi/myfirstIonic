@@ -1,0 +1,36 @@
+<ion-view view-title="Home">
+	<ion-nav-buttons side="primary"><!--navbar button here, sid = primary, secondary-->
+		<button class="button button-small button-icon ion-log-out" ng-click='logout()'></button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side="secondary"><!--navbar button here, sid = primary, secondary-->
+		<button class="button button-icon ion-ios-gear" ng-click='modal.show()'></button>
+	</ion-nav-buttons>
+
+	<ion-content class="">
+	<ion-refresher on-refresh="refresh()"></ion-refresher><!--Refreshing function here!!-->
+		<div class="container">
+			<!--<pre>{{profileUserInfo.data|json}}</pre>-->
+			<div class="profilePicBox myBlue text-center coverPhoto">
+				<img ng-if="profileUserInfo.userInfo.profilePic" class="circle z2 circleborder" ng-src="{{profileUserInfo.userInfo.profilePic}}">
+				<img ng-if="!profileUserInfo.userInfo.profilePic" class="circle z2" ng-src="img/avatar.png">
+				<h3 class="coldText z2">{{profileUserInfo.userInfo.nickName|| "Your Name Here"}}</h3>
+			</div>
+			<div class="infoBox row text-center">
+				<a class="col col-50 item-avatar-left" ng-click="go('tabs.friends')">
+					<i class="ion-ios-person"></i>
+					Friends : {{profileUserInfo.friends.totalNum|| 0}}
+				</a>
+				<a class="col col-50 item-avatar-left" ng-click="go('tabs.tickets')">
+					<i class="ion-card"></i>
+					Tickets : {{profileUserInfo.tickets.totalNum|| 0}}
+				</a>
+			</div>
+			<div class="card text-center">
+				<div class="item item-text-wrap">
+					<h2 class="boldFont">Balance Summary</h2>
+					<span class="icon ion-social-usd"> </span><span ng-class="{'red':!balance || balance < 0,'Green': balance >= 0}">{{balance | number:2 || 'N/A'}}</span>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

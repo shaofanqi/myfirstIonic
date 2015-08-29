@@ -1,0 +1,55 @@
+<ion-modal-view>
+<header class="bar bar-header bar-positive myColorTheme">
+	<button class="button button-small button-clear icon ion-ios-arrow-back" ng-click="oModal2.hide()"><span class=""></span></button>
+	<h1 class="title">Adding New item</h1>
+	<button class="button button-small button-clear icon ion-upload" ng-click="updateTicketInfo()"></button>
+</header>
+<ion-content class="has-header">
+<div class="list">
+	<label class="item item-input">
+		<span class="input-label">Amount: <i class="icon ion-social-usd"></i></span>
+		<input type="number" ng-model="item.amount" required>
+	</label>
+	<label class="item item-input">
+		<span class="input-label">Paid by:<button class="button button-small button-clear icon ion-ios-plus" ng-click="showPartList = !showPartList"></button></span>
+	</label>
+	<div class="item item-input" ng-if="paidByList.length > 0">
+		<ul class="padding">
+			<li ng-repeat="p in paidByList track by $index">{{p.people.nickName}}...${{p.amount}}
+			<button class="button button-small button-clear icon ion-ios-close-empty" ng-click="delIt($index)"></button></li>
+		</ul>
+	</div>
+	<div class="item" ng-if="showPartList">
+		<ul>
+			<li ng-repeat="i in ticketInfo.participants | filter:filterParticipants"><button class="button button-clear button-small" ng-click="addPaidBy(i,item)">{{i.nickName}}</button></li>
+		</ul>
+	</div>
+	<label class="item item-input item-select">
+		<span class="input-label">Category:</span>
+		<select ng-model="item.category">
+			<option>Clothing</option>
+			<option>Food</option>
+			<option>Rent</option>
+			<option>Entertainment</option>
+			<option>Utilities</option>
+			<option>Transportation</option>
+			<option>Study</option>
+			<option>Insurance</option>
+			<option>Lost</option>
+			<option>Fitness</option>
+			<option>Others</option>
+		</select>
+	</label>
+		<label class="item item-input">
+		<span class="input-label">Description: </span>
+		<input type="text" ng-model="item.description">
+	</label>
+	<button class="button button-small button-clear" ng-click="showAdvance =! showAdvance">Advanced Setting</button>
+		<label class="item item-input" ng-repeat="i in ticketInfo.participants" ng-if="showAdvance">
+			<button class="button button-small button-clear" ng-click="addWeight($index)">Weight of {{i.nickName}} : [{{weight[$index]}}]</button>
+				
+		</label>
+</div>
+</div>
+</ion-content>
+</ion-modal-view>

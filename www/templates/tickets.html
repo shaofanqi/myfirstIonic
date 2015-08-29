@@ -1,0 +1,23 @@
+<ion-view view-title="Tickets">
+<ion-nav-buttons side="secondary"><!--navbar button here, sid = primary, secondary-->
+<button class="button button-icon ion-plus-circled" ng-click="modal.show()"></button>
+</ion-nav-buttons>
+<div class="bar bar-subheader item-input-inset bar-light">
+    <label class="item-input-wrapper">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" ng-model="query" placeholder="Search">
+    </label>
+</div>
+<ion-content class="has-subheader">
+<ion-refresher on-refresh="refresh()"></ion-refresher>
+<!--  <div class="item item-inset" ng-repeat="t in myTickets track by $index">
+    {{t}}
+</div> -->
+<ion-list>
+<ion-item class="item-text-wrap" ng-repeat='t in myTickets | filter:query track by t.$id ' href="#/tab/tickets/{{t.$id}}">
+    <h2>{{t.name}}</h2>
+    <h3>{{t.description | limitTo:30}}{{t.description.length > 50 ? '&hellip;':''}}</h3>
+</ion-item>
+</ion-list>
+</ion-content>
+</ion-view>

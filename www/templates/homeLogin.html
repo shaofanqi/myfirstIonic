@@ -1,0 +1,20 @@
+<ion-view hide-nav-bar="true">
+	<ion-content >
+	<div>
+		<div class="list">
+			<label class="item item-input">
+				<span class="input-label">Username:</span>
+				<input type="text" ng-model="user.username">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Passowrd:</span>
+				<input type="password" ng-model="user.password">
+			</label>
+		</div>
+		<div class="text-center">
+			<button class="button button-balanced" ng-click="login(user)">Login</button>
+			<button class="button button-assertive" ng-click="register(user)">Register</button>
+		</div>
+	</div>
+	</ion-content>
+</ion-view>
